@@ -1,5 +1,6 @@
 import {
-  createStore
+  createStore,
+  combineReducers
 } from 'redux'
 
 // state shape
@@ -37,12 +38,16 @@ const commentsReducer = (state = [], action) => {
   }
 }
 
-const mainReducer = (state = {}, action) => {
-  return {
-    posts: postsReducer(state.posts, action),
-    comments: commentsReducer(state.comments, action)
-  }
-}
+// const mainReducer = (state = {}, action) => {
+//   return {
+//     posts: postsReducer(state.posts, action),
+//     comments: commentsReducer(state.comments, action)
+//   }
+// }
+const mainReducer = combineReducers({
+  posts: postsReducer,
+  comments: commentsReducer
+})
 
 // store
 const store = createStore(mainReducer)
