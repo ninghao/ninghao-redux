@@ -12,3 +12,17 @@ const counterReducer = (state = 0, action) => {
 }
 
 const store = createStore(counterReducer)
+
+const log = () => {
+  console.log(store.getState())
+}
+
+store.subscribe(log)
+log()
+
+store.dispatch({
+  type: 'INCREMENT'
+})
+store.dispatch({
+  type: 'INCREMENT'
+})
