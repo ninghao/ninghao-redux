@@ -53,3 +53,19 @@ const log = () => {
 
 store.subscribe(log)
 log()
+
+store.dispatch({
+  type: 'ADD_POST',
+  post: {
+    id: 1,
+    title: 'welcome to ninghao.net'
+  }
+})
+store.dispatch({
+  type: 'ADD_COMMENT',
+  comment: {
+    id: 1,
+    postId: 1,
+    content: 'nice ~'
+  }
+})
