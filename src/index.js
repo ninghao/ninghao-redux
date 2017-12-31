@@ -2,16 +2,34 @@ import {
   createStore
 } from 'redux'
 
-const counterReducer = (state = 0, action) => {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    default:
-      return state
+// state shape
+// {
+//   posts: [
+//     { id: 1, title: 'welcome to ninghao.net' }
+//   ],
+//   comments: [
+//     { id: 1, postId: 1, content: 'nice ~' }
+//   ]
+// }
+
+// reducers
+const postsReducer = (state = [], action) => {
+
+}
+
+const commentsReducer = (state = [], action) => {
+
+}
+
+const mainReducer = (state = {}, action) => {
+  return {
+    posts: postsReducer(state.posts, action),
+    comments: commentsReducer(state.comments, action)
   }
 }
 
-const store = createStore(counterReducer)
+// store
+const store = createStore(mainReducer)
 
 const log = () => {
   console.log(store.getState())
@@ -19,10 +37,3 @@ const log = () => {
 
 store.subscribe(log)
 log()
-
-store.dispatch({
-  type: 'INCREMENT'
-})
-store.dispatch({
-  type: 'INCREMENT'
-})
