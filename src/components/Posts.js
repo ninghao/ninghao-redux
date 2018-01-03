@@ -36,6 +36,12 @@ class Posts extends Component {
     console.log('State：', context.store.getState())
 
     this.store = context.store
+
+    this.unsubscribe = this.store.subscribe(() => this.forceUpdate())
+  }
+
+  componentWillUnMount () {
+    this.unsubscribe()
   }
 
   onClickDeleteButton = (id) => {
