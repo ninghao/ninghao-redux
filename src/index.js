@@ -24,6 +24,13 @@ store.dispatch({
   }
 })
 store.dispatch({
+  type: 'ADD_POST',
+  post: {
+    id: 2,
+    title: 'react & redux'
+  }
+})
+store.dispatch({
   type: 'ADD_COMMENT',
   comment: {
     id: 1,
