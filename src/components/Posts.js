@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-const PostItem = ({ entity }) => {
+const PostItem = ({ entity, onClickDeleteButton }) => {
   return (
     <div>
       <h3>{ entity.title }</h3>
+      <button onClick={ onClickDeleteButton }>DELETE</button>
     </div>
   )
 }
 
-const PostList = ({ entities }) => {
+const PostList = ({ entities, onClickDeleteButton }) => {
   const items = entities.map(item =>
     <PostItem
       key={ item.id }
       entity={ item }
+      onClickDeleteButton={ () => onClickDeleteButton(item.id) }
     />
   )
 
@@ -36,10 +38,20 @@ class Posts extends Component {
     this.store = context.store
   }
 
+  onClickDeleteButton = (id) => {
+    this.store.dispatch({
+      type: 'DELETE_POST',
+      id
+    })
+  }
+
   render () {
     const entities = this.store.getState().posts
     return (
-      <PostList entities={ entities } />
+      <PostList
+        entities={ entities }
+        onClickDeleteButton={ this.onClickDeleteButton }
+      />
     )
   }
 }
