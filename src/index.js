@@ -1,8 +1,11 @@
+import React from 'react'
+import { render } from 'react-dom'
 import {
   createStore
 } from 'redux'
 
 import mainReducer from './reducers'
+import App from './components/App'
 
 // store
 const store = createStore(mainReducer)
@@ -29,3 +32,8 @@ store.dispatch({
     content: 'nice ~'
   }
 })
+
+render(
+  <App />,
+  document.getElementById('root')
+)
